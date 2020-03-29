@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
@@ -13,9 +14,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val btClick = findViewById<Button>(R.id.btClick)
 
+        val listner = HelloListner()
 
+        btClick.setOnClickListener(listner)
 
+        val btClear = findViewById<Button>(R.id.btClear)
+
+        btClear.setOnClickListener(listner)
 
     }
 
@@ -27,9 +34,27 @@ class MainActivity : AppCompatActivity() {
 
             val output = findViewById<TextView>(R.id.tvOutput)
 
-            val inputStr = input.text.toString()
+            when(view.id){
 
-            output.text = inputStr + "さんこんにちは！"
+                R.id.btClick -> {
+
+                    val inputStr = input.text.toString()
+
+                    output.text = inputStr + "さんこんにちは！"
+                }
+
+                R.id.btClear -> {
+
+                    input.setText("")
+
+                    output.setText("")
+
+                }
+            }
+
+
+
+
         }
     }
 }
